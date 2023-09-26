@@ -1,0 +1,38 @@
+<div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 lg:-mx-8">
+            <div class="overflow-hidden">
+                <table class="min-w-full text-left text-sm font-light">
+                    <thead class = "border-b font-medium dark:border-neutral-500">
+                        <tr>
+                            <th scope="col" class="px-6 py-4">#</th>
+                            <th scope="col" class="px-6 py-4">სახელი</th>
+                            <th scope="col" class="px-6 py-4">გვარი</th>
+                            <th scope="col" class="px-6 py-4">პირადი ნომერ</th>
+                            <th scope="col" class="px-6 py-4">დაბ. თარიღი</th>
+                            <th scope="col" class="px-6 py-4">სქესი</th>
+                            <th scope="col" class="px-6 py-4">ქალაქი</th>
+                            <th scope="col" class="px-6 py-4">მისამართი</th>
+                            <th scope="col" class="px-6 py-4">რეგდაკტირება</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let client of clients; let i = index;" class="border-b transition duration-300 ease-in-out hover:bg-neutral-100 dark:border-neutral-500 dark:hover:bg-neutral-300">
+                            <td class="whitespace-nowrap px-6 py-4">{{i+1}}</td>
+                            <td class="whitespace-nowrap px-6 py-4">{{client.name}}</td>
+                            <td class="whitespace-nowrap px-6 py-4">{{client.surename}}</td>
+                            <td class="whitespace-nowrap px-6 py-4">{{client.id}}</td>
+                            <td class="whitespace-nowrap px-6 py-4">{{client.birthdayDate}}</td>
+                            <td class="whitespace-nowrap px-6 py-4">{{client.sex}}</td>
+                            <td class="whitespace-nowrap px-6 py-4">{{client.city}}</td>
+                            <td class="whitespace-nowrap px-6 py-4">{{client.address}}</td>
+                            <button (click)="edit(client.id)" class="bg-red-500 hover:bg-red-700 text-white font-bold px-6 py-4">
+                                რეგდაკტირება
+                            </button>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

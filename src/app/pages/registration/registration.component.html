@@ -1,0 +1,109 @@
+<div class="flex justify-center mt-10">
+    <form [formGroup]="userForm" (ngSubmit)="submitForm(this.id)" class="w-2/5 rounded-lg border-solid border-2 border-blue-500 p-5">
+        <h1 class="mb-3" *ngIf="!this.id">კლიენტის რეგისტრაცია</h1>
+        <h1 class="mb-3" *ngIf="this.id">კლიენტის რეგდაკტირება</h1>
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                სახელი
+                </label>
+                <input type="text" id="name" formControlName="name" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-blue-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                <div *ngIf="userForm.get('name')?.hasError('required') && userForm.get('name')?.touched" class="text-red-500">
+                    აუცილებელი ველია
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                გვარი
+                </label>
+                <input type="text" id="surename" formControlName="surename" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-blue-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                <div *ngIf="userForm.get('surename')?.hasError('required') && userForm.get('surename')?.touched" class="text-red-500">
+                    აუცილებელი ველია
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-wrap -mx-3 mb-2">
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                ქალაქი
+                </label>
+                <div>
+                    <div class="relative">
+                        <select formControlName="city" id="city" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <option *ngFor="let item of cities; let i = index;" [value]="item">{{item}}</option>
+                        </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                    </div>
+                    <div>  
+                        <div *ngIf="userForm.get('city')?.hasError('required') && userForm.get('city')?.touched" class="text-red-500">
+                            აუცილებელი ველია
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                სქესი
+                </label>
+                <div>
+                    <div class="relative">
+                        <select formControlName="sex" id="sex" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                            <option *ngFor="let item of sex; let i = index;" [value]="item">{{item}}</option>
+                        </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                            </div>
+                    </div>
+                    <div>  
+                        <div *ngIf="userForm.get('sex')?.hasError('required') && userForm.get('sex')?.touched" class="text-red-500">
+                            აუცილებელი ველია
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                დაბ. თარიღი
+                </label>
+                <div>
+                    <input type="date" id="birthdayDate" formControlName="birthdayDate" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-blue-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                    <div>  
+                        <div *ngIf="userForm.get('birthdayDate')?.hasError('required') && userForm.get('birthdayDate')?.touched" class="text-red-500">
+                            აუცილებელი ველია
+                        </div>
+                        <div *ngIf="userForm.get('birthdayDate')?.hasError('underage') " class="text-red-500">
+                            ასაკი უნდა აღემატებოდეს 18 წელს
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap -mx-3 mb-6 mt-8">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                პირადი ნომერი
+                </label>
+                <input type="number" id="id" formControlName="id" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-blue-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                <div *ngIf="userForm.get('id')?.hasError('required') && userForm.get('id')?.touched" class="text-red-500">
+                    აუცილებელი ველია
+                </div>
+                <div *ngIf="userForm.get('id')?.hasError('idExists') && userForm.get('id')?.touched" class="text-red-500">
+                    დაკავებულია
+                </div>
+            </div>
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                მისამართი
+                </label>
+                <input type="text" id="address" formControlName="address" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-blue-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                <div *ngIf="userForm.get('address')?.hasError('required') && userForm.get('address')?.touched" class="text-red-500">
+                    აუცილებელი ველია
+                </div>
+            </div>
+        </div>
+        <button type="submit" [disabled]="!userForm.valid" [ngClass]="!userForm.valid ? 'bg-blue-500 text-white font-bold py-2 px-4 rounded mt-2' : 'bg-blue-500 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded mt-2'">შენახვა</button>
+    </form>
+</div>
